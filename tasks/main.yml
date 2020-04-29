@@ -1,0 +1,16 @@
+---
+# tasks file for ansible-role-unifi-video
+
+
+- name: Download Unifi Video Debian Pkg
+  get_url:
+    url: https://dl.ui.com/firmwares/ufv/v3.10.10/unifi-video.Ubuntu18.04_amd64.v3.10.10.deb
+    dest: /tmp/unifi-video.deb
+
+- name: Install UniFi Video
+  apt:
+    autoremove: true
+    update_cache: true
+    deb: /tmp/unifi-video.deb
+    autoclean: true
+    state: present
